@@ -1,0 +1,65 @@
+{
+  "name": "glamor-jsxstyle",
+  "version": "3.0.0",
+  "description": "jsxstyle syntax bindings for Glamor",
+  "main": "lib/index.js",
+  "typings": "index.d.ts",
+  "files": [
+    "es6",
+    "lib",
+    "umd",
+    "index.d.ts"
+  ],
+  "homepage": "https://github.com/jaredpalmer/glamor-jsxstyle",
+  "author": "Jared Palmer <jared@palmer.net>",
+  "repository": "https://github.com/jaredpalmer/glamor-jsxstyle",
+  "license": "MIT",
+  "keywords": [
+    "css",
+    "inline"
+  ],
+  "scripts": {
+    "example": "npm run start",
+    "clean": "rimraf lib es6 umd",
+    "build": "npm-run-all -s clean -p build:** -s size",
+    "build:lib": "babel src -d lib --presets es2015,stage-0,react",
+    "build:es6": "babel src -d es6",
+    "build:umd": "mkdirp umd && webpack --config ./webpack/umd.js",
+    "build:umd-prod": "cross-env NODE_ENV=production npm run build:umd",
+    "size": "cat umd/index.min.js | gzip | wc -c",
+    "coverage": "rm -rf tests/coverage && COVERAGE=1 npm test && open tests/coverage/*/index.html",
+    "prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-istanbul": "^4.1.3",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.0.0",
+    "expect": "^1.20.2",
+    "karma": "^1.3.0",
+    "karma-browserstack-launcher": "^1.1.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.1",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-safari-launcher": "^1.0.0",
+    "mkdirp": "^0.5.1",
+    "mocha": "^3.2.0",
+    "npm-run-all": "^3.1.2",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "rimraf": "^2.5.4",
+    "webpack": "^2.5.1"
+  },
+  "dependencies": {
+    "glamor": "3.0.0-1",
+    "object-assign": "^4.1.1"
+  }
+}
