@@ -1,6 +1,6 @@
 {
   "name": "glamor-jsxstyle",
-  "version": "3.0.0",
+  "version": "3.0.0-2",
   "description": "jsxstyle syntax bindings for Glamor",
   "main": "lib/index.js",
   "typings": "index.d.ts",
@@ -28,7 +28,7 @@
     "build:umd-prod": "cross-env NODE_ENV=production npm run build:umd",
     "size": "cat umd/index.min.js | gzip | wc -c",
     "test": "karma start ./karma.conf.js",
-    "coverage": "rm -rf tests/coverage && COVERAGE=1 npm test && open tests/coverage/*/index.html",
+    "coverage": "rm -rf coverage && COVERAGE=1 npm test && open coverage/*/index.html",
     "prepublish": "npm run build"
   },
   "devDependencies": {
