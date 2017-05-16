@@ -1,6 +1,7 @@
-import * as React from 'react';
 import * as glamor from 'glamor';
+import * as helpers from './helpers';
 
+import React from 'react';
 import assign from 'object-assign';
 
 // import shallowCompare from 'react-addons-shallow-compare'
@@ -460,13 +461,13 @@ const splitStyles = combinedProps => {
     } else if (key === 'css') {
       assign(style, combinedProps[key]);
     } else if (pseudos[key] >= 0) {
-      gStyle.push(glamor[key](combinedProps[key]));
+      gStyle.push(helpers[key](combinedProps[key]));
     } else if (
       parameterizedPseudos[key] ||
       key === 'media' ||
       key === 'select'
     ) {
-      gStyle.push(glamor[key](...combinedProps[key]));
+      gStyle.push(helpers[key](...combinedProps[key]));
     } else if (key === 'merge' || key === 'compose') {
       if (Array.isArray(combinedProps[key])) {
         gStyle.splice(gStyle.length, 0, ...combinedProps[key]);
@@ -484,10 +485,11 @@ const splitStyles = combinedProps => {
       props[key] = combinedProps[key];
     }
   });
+
   return {
     ...(gStyle.length > 0
-      ? glamor.merge(style, ...gStyle)
-      : Object.keys(style).length > 0 ? glamor.style(style) : {}),
+      ? glamor.css(style, ...gStyle)
+      : Object.keys(style).length > 0 ? glamor.css(style) : {}),
     ...props,
   };
 };
