@@ -27,6 +27,7 @@
     "build:umd": "mkdirp umd && webpack --config ./webpack/umd.js",
     "build:umd-prod": "cross-env NODE_ENV=production npm run build:umd",
     "size": "cat umd/index.min.js | gzip | wc -c",
+    "test": "karma start ./karma.conf.js",
     "coverage": "rm -rf tests/coverage && COVERAGE=1 npm test && open tests/coverage/*/index.html",
     "prepublish": "npm run build"
   },
@@ -50,6 +51,7 @@
     "karma-mocha-reporter": "^2.2.1",
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-safari-launcher": "^1.0.0",
+    "karma-webpack": "^2.0.3",
     "mkdirp": "^0.5.1",
     "mocha": "^3.2.0",
     "npm-run-all": "^3.1.2",
